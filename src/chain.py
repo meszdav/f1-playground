@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 from src.visualization import plot_telemetry
 import fastf1
 from dotenv import load_dotenv
-from src.tools import get_most_recent_gp, get_results
+from src.tools import get_most_recent_gp, get_results, DATE
 
 load_dotenv()
 
@@ -36,6 +36,7 @@ prompt = PromptTemplate(
     input_variables=["query"],
     template=template,
     partial_variables={
+        "current_year": DATE.year,
         "telemetry_data": parser.get_format_instructions(),
         "most_recent_gp": get_most_recent_gp(),
     },
