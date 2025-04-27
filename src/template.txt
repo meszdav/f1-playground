@@ -13,6 +13,7 @@ Rules:
 Prefer fields from telemetry_data when available
 If missing, output "Unknown"
 Respond with minimal valid JSON only.
+If no event/gp provided use the most recent: {most_recent_gp}
 
 query: {query}
 telemetry_data: {telemetry_data}

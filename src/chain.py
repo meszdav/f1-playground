@@ -7,6 +7,7 @@ from langchain_openai import ChatOpenAI
 from src.visualization import plot_telemetry
 import fastf1
 from dotenv import load_dotenv
+from src.tools import get_most_recent_gp, get_results
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ class TelemetryData(BaseModel):
     )
 
 
-with open("src/prompts/telemetry_prompt.txt", "r") as file:
+with open("src/template.txt", "r") as file:
     template = file.read()
 
 model = ChatOpenAI(model="gpt-4o")
@@ -36,29 +37,10 @@ prompt = PromptTemplate(
     template=template,
     partial_variables={
         "telemetry_data": parser.get_format_instructions(),
+        "most_recent_gp": get_most_recent_gp(),
     },
 )
 
 
 chain = prompt | model | parser
 
-
-# prompt_input = input("What telemetry data do you want to plot?\n")
-
-# chain_result = chain.invoke({"query": prompt_input})
-
-# print("Chain result:", chain_result)
-# result = TelemetryData(**chain_result)
-
-
-# session = fastf1.get_session(result.year, result.event, result.session)
-# session.load()
-
-# fig = plot_telemetry(
-#     driver_1=result.driver_1,
-#     driver_2=result.driver_2,
-#     session=session,
-#     show_turns=True,
-# )
-
-# fig.show()
