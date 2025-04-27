@@ -1,13 +1,13 @@
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_ollama.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
 from src.visualization import plot_telemetry
 import fastf1
 from dotenv import load_dotenv
-from src.tools import get_most_recent_gp, get_results, DATE
+from src.tools import get_most_recent_gp, get_gp_results, DATE
 
 load_dotenv()
 
@@ -27,10 +27,10 @@ class TelemetryData(BaseModel):
 with open("src/template.txt", "r") as file:
     template = file.read()
 
-model = ChatOpenAI(model="gpt-4o")
+model = ChatOpenAI(model="gpt-4o-mini")
+model_with_tools = model.bind_tools([get_gp_results])
 
 parser = JsonOutputParser(pydantic_object=TelemetryData)
-
 
 prompt = PromptTemplate(
     input_variables=["query"],
@@ -42,6 +42,4 @@ prompt = PromptTemplate(
     },
 )
 
-
-chain = prompt | model | parser
 

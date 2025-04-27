@@ -92,6 +92,7 @@ def plot_telemetry(
         rows=3,
         cols=1,
         vertical_spacing=0.02,
+        shared_xaxes=True,
     )
 
     driver_1_full_name = session.get_driver(driver_1)["FullName"]
@@ -156,6 +157,7 @@ def plot_telemetry(
     title = (
         f"{event_date} | {event_name} - {event_type}<br>"
         f"{driver_1_full_name} vs {driver_2_full_name} Telemetry"
+        "\n\n"
     )
 
     fig.update_layout(title=title, height=800)

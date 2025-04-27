@@ -18,3 +18,6 @@ The current year is: {current_year}
 
 query: {query}
 telemetry_data: {telemetry_data}
+
+Very Important:
+If position specific data is provided please fetch the results to get the driver!
