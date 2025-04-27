@@ -1,0 +1,18 @@
+You receive:
+
+query: free text
+telemetry_data: partial structured JSON from JsonOutputParser
+Task: extract:
+
+3-letter abbreviations of two drivers
+Grand Prix event name
+Year of event
+Session type (Race, Qualifying, Practice, etc.)
+Rules:
+
+Prefer fields from telemetry_data when available
+If missing, output "Unknown"
+Respond with minimal valid JSON only.
+
+query: {query}
+telemetry_data: {telemetry_data}

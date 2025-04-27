@@ -1,0 +1,16 @@
+[project]
+name = "f1-playground"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastf1>=3.5.3",
+    "grandalf>=0.8",
+    "jupyter>=1.1.1",
+    "langchain-core>=0.3.54",
+    "langchain-ollama>=0.3.2",
+    "langchain-openai>=0.3.14",
+    "plotly>=6.0.1",
+    "python-dotenv>=1.1.0",
+]
