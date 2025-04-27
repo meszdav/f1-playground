@@ -10,10 +10,11 @@ Year of event
 Session type (Race, Qualifying, Practice, etc.)
 Rules:
 
-Prefer fields from telemetry_data when available
-If missing, output "Unknown"
+Use fields from telemetry_data when available
 Respond with minimal valid JSON only.
-If no event/gp provided use the most recent: {most_recent_gp}
+If no event provided use: {most_recent_gp}
+If no session provided use: 'Qualifying'
+The current year is: {current_year}
 
 query: {query}
 telemetry_data: {telemetry_data}
