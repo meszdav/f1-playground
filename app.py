@@ -10,6 +10,20 @@ st.title("🏎️ F1 Telemetry Data Visualization")
 
 
 def process_query(prompt_input):
+    """Process a natural language query about F1 telemetry data.
+
+    This function handles the two-step chain process:
+    1. First, it sends the query to an LLM with tool-calling capabilities
+    2. Then it executes any tool calls and sends the results back to a second LLM
+       to generate structured telemetry data
+
+    Args:
+        prompt_input (str): The natural language query about F1 telemetry data
+
+    Returns:
+        dict: Structured data containing telemetry information that can be parsed
+              into the TelemetryData class
+    """
     chain_1 = prompt | model_with_tools
     ai_msg = chain_1.invoke({"query": prompt_input})
 
@@ -28,6 +42,22 @@ def process_query(prompt_input):
 
 
 def display_telemetry(result):
+    """
+    Display telemetry data for a given Formula 1 session and drivers.
+    This function retrieves telemetry data for a specified Formula 1 session
+    and compares the performance of two drivers. The telemetry data is visualized
+    using a Plotly chart embedded in a Streamlit application.
+    Args:
+        result (object): An object containing the following attributes:
+            - year (int): The year of the Formula 1 season.
+            - event (str): The name of the event (e.g., Grand Prix).
+            - session (str): The session type (e.g., 'FP1', 'Qualifying', 'Race').
+            - driver_1 (str): The code or name of the first driver.
+            - driver_2 (str): The code or name of the second driver.
+    Returns:
+        None: The function renders the telemetry chart directly in the Streamlit app.
+    """
+
     session = fastf1.get_session(result.year, result.event, result.session)
     session.load()
 
