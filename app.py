@@ -41,21 +41,24 @@ def process_query(prompt_input):
     return chain_2.invoke(messages)
 
 
-def display_telemetry(result):
+def display_telemetry(result: TelemetryData):
     """
-    Display telemetry data for a given Formula 1 session and drivers.
-    This function retrieves telemetry data for a specified Formula 1 session
-    and compares the performance of two drivers. The telemetry data is visualized
-    using a Plotly chart embedded in a Streamlit application.
+    Visualize and compare telemetry data for a Formula 1 session.
+
+    This function fetches telemetry data for a specified Formula 1 session
+    and compares the performance of two drivers. The data is visualized
+    using a Plotly chart, which is displayed in the Streamlit application.
+
     Args:
-        result (object): An object containing the following attributes:
-            - year (int): The year of the Formula 1 season.
+        result (TelemetryData): An object containing the following attributes:
+            - year (int): The Formula 1 season year.
             - event (str): The name of the event (e.g., Grand Prix).
             - session (str): The session type (e.g., 'FP1', 'Qualifying', 'Race').
-            - driver_1 (str): The code or name of the first driver.
-            - driver_2 (str): The code or name of the second driver.
+            - driver_1 (str): The identifier or name of the first driver.
+            - driver_2 (str): The identifier or name of the second driver.
+
     Returns:
-        None: The function renders the telemetry chart directly in the Streamlit app.
+        None: The function directly renders the telemetry chart in the Streamlit app.
     """
 
     session = fastf1.get_session(result.year, result.event, result.session)
