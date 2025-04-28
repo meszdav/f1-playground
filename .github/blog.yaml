@@ -1,0 +1,17 @@
+name: Create blog post
+on: [push]
+jobs:
+  publish-notebook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test the action
+        uses: meszdav/notebook-hugo-action@v1 
+        with:
+          blog-gh-token: ${{ secrets.BLOG_GH_TOKEN }}
+          notebook-path: "index.ipynb"
+          target-repo: "meszdav/blog"
+          target-branch: "main"
+          target-page: "tests"
