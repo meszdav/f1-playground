@@ -14,4 +14,4 @@ jobs:
           notebook-path: "index.ipynb"
           target-repo: "meszdav/blog"
           target-branch: "main"
-          target-page: "tests"
+          target-page: "posts"
