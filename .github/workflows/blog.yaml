@@ -11,7 +11,7 @@ jobs:
         uses: meszdav/notebook-hugo-action@v1 
         with:
           blog-gh-token: ${{ secrets.BLOG_GH_TOKEN }}
-          notebook-path: "notebooks/index.ipynb"
+          notebook-path: "index.ipynb"
           target-repo: "meszdav/blog"
           target-branch: "main"
           target-page: "tests"
